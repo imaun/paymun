@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30611.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AF94CFBD-B0E5-49FD-A564-B62792EBBCC6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paymun.Gateway.Zarinpal", "src\Paymun.Gateway.Zarinpal\Paymun.Gateway.Zarinpal.csproj", "{439618AB-31BC-4BA0-9F8A-14749D154E52}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paymun.Core", "src\Paymun.Core\Paymun.Core.csproj", "{FD35B2EA-33F9-412E-BEDD-60446389B889}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{439618AB-31BC-4BA0-9F8A-14749D154E52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{439618AB-31BC-4BA0-9F8A-14749D154E52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{439618AB-31BC-4BA0-9F8A-14749D154E52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{439618AB-31BC-4BA0-9F8A-14749D154E52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD35B2EA-33F9-412E-BEDD-60446389B889}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD35B2EA-33F9-412E-BEDD-60446389B889}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD35B2EA-33F9-412E-BEDD-60446389B889}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD35B2EA-33F9-412E-BEDD-60446389B889}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{439618AB-31BC-4BA0-9F8A-14749D154E52} = {AF94CFBD-B0E5-49FD-A564-B62792EBBCC6}
+		{FD35B2EA-33F9-412E-BEDD-60446389B889} = {AF94CFBD-B0E5-49FD-A564-B62792EBBCC6}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E113F593-2E34-455C-8BEC-0C42F9AF18CB}
+	EndGlobalSection
+EndGlobal
