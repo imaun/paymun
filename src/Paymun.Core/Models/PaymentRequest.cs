@@ -1,5 +1,6 @@
 ﻿using System;
 using Paymun.Core.Exceptions;
+using System.Text.Json.Serialization;
 using System.Collections.Generic;
 
 namespace Paymun.Core.Models {
@@ -14,9 +15,13 @@ namespace Paymun.Core.Models {
             CallbackUrl = callbackUrl;
         }
 
+        [JsonPropertyName("MerchantID")]
+        public string MerchantId { get; set; }
+
         public long TrackingNumber { get; set; }
 
         private string _callbackUrl;
+        [JsonPropertyName("CallbackURL")]
         public string CallbackUrl {
             get => _callbackUrl;
             set {
