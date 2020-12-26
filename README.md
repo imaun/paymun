@@ -12,7 +12,7 @@ This library is currently under development and only support **Zarinpal** gatewa
 
 - Build the soultion using VisualStudio or by running `dotnet build` command in VsCode or any terminal.
 
-- Reference `Pyamun.Core` & `Paymun.Core.Zarinpal` in your project
+- Reference `Paymun.Core` & `Paymun.Gateway.Zarinpal` in your project
 
 - In your `Startup.cs` file, under `ConfigureServices` method add `services.AddZarinpalServices(merchantId: "your_merchant_id");` line. (Get MerchantID from Zarinpal.com)
 
