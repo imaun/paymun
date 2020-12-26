@@ -1,27 +1,21 @@
 ﻿using System;
-using System.Net.Http;
-using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 using Paymun.Core;
 using Paymun.Core.Models;
+using Paymun.Gateway.Zarinpal.Models;
 using Paymun.Gateway.Zarinpal.Internal;
 
 namespace Paymun.Gateway.Zarinpal {
 
     public class ZarinpalGateway {
 
-        //private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly HttpRestClient _httpClient;
-        private ZarinpalApiHelper _apiHelper;
+        private readonly IHttpRestClient _httpClient;
 
         public string MerchantId { get; set; }
 
         public ZarinpalGateway(
-            //IHttpContextAccessor httpContextAccessor,
-            HttpRestClient httpClient,
+            IHttpRestClient httpClient,
             string merchantId) {
-            //_httpContextAccessor = httpContextAccessor 
-                //?? throw new ArgumentNullException(nameof(httpContextAccessor));
             _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
             MerchantId = merchantId;
         }
@@ -33,17 +27,19 @@ namespace Paymun.Gateway.Zarinpal {
             if (request == null)
                 throw new ArgumentNullException(nameof(request));
 
-            request.MerchantId = MerchantId;
+            if(string.IsNullOrWhiteSpace(request.MerchantId))
+                request.MerchantId = this.MerchantId;
 
-            _apiHelper = new ZarinpalApiHelper(sandbox);
+            var zarinpalRequest = request.ToZarinpalRequest();
 
-            var result = await _httpClient.PostAsync<PaymentRequest, PaymentRequestResult>(
-                request,
-                _apiHelper.GetPaymentRequestUrl(withExtra: false));
+            var result = await _httpClient
+                .PostAsync<ZarinpalPaymentRequest, ZarinpalPaymentRequestResult>(
+                    zarinpalRequest,
+                    ZarinpalApiHelper
+                        .GetPaymentRequestUrl(sandbox, withExtra: false)
+                    );
 
-            result.PaymentPageUrl = _apiHelper.GetPaymentGatewayPageUrl(result.Authority);
-
-            return await Task.FromResult(result);
+            return await Task.FromResult(result.ToResult());
         }
     }
 }

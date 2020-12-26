@@ -1,6 +1,5 @@
 ﻿using System;
 using Paymun.Core.Exceptions;
-using System.Text.Json.Serialization;
 using System.Collections.Generic;
 
 namespace Paymun.Core.Models {
@@ -15,13 +14,12 @@ namespace Paymun.Core.Models {
             CallbackUrl = callbackUrl;
         }
 
-        [JsonPropertyName("MerchantID")]
+        #region Properties
         public string MerchantId { get; set; }
 
         public long TrackingNumber { get; set; }
 
         private string _callbackUrl;
-        [JsonPropertyName("CallbackURL")]
         public string CallbackUrl {
             get => _callbackUrl;
             set {
@@ -35,7 +33,7 @@ namespace Paymun.Core.Models {
             }
         }
 
-        public int Amount { get; set; }
+        public long Amount { get; set; }
 
         public string Email { get; set; }
 
@@ -44,5 +42,7 @@ namespace Paymun.Core.Models {
         public string Description { get; set; }
 
         public IDictionary<string, object> AdditionalData { get; set; }
+
+        #endregion
     }
 }

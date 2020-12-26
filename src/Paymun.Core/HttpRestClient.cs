@@ -7,7 +7,15 @@ using System.Text.Json;
 
 namespace Paymun.Core {
 
-    public class HttpRestClient {
+    public interface IHttpRestClient
+    {
+        Task<TResult> PostAsync<T, TResult>(
+            T data,
+            string url,
+            Dictionary<string, string> headers = null);
+    }
+
+    public class HttpRestClient: IHttpRestClient {
 
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly HttpClient _httpClient;

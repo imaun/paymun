@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Paymun.Gateway.Zarinpal;
+﻿using Paymun.Gateway.Zarinpal;
 using Paymun.Core;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -14,8 +11,8 @@ namespace Microsoft.Extensions.DependencyInjection
             string merchantId) {
 
             services.AddHttpClient();
-            services.AddSingleton<HttpRestClient>();
-            var restClient = services.BuildServiceProvider().GetRequiredService<HttpRestClient>();
+            services.AddSingleton<IHttpRestClient, HttpRestClient>();
+            var restClient = services.BuildServiceProvider().GetRequiredService<IHttpRestClient>();
             services.AddTransient(_=> new ZarinpalGateway(restClient, merchantId));
 
             return services;
