@@ -1,5 +1,5 @@
 ﻿namespace Paymun.Core.Models.Enum {
-    public enum PaymentVerificationStatus {
+    public enum PaymentVerifiyStatus {
         Failed = 0,
         Succeeded = 1,
         AlreadyVerified = 2

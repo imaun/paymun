@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 
 namespace Paymun.Gateway.Zarinpal.Models {
-    internal class ZarinpalPaymentVerificationRequest {
+    internal class ZarinpalPaymentVerifyRequest {
         public long Amount { get; set; }
 
         [JsonPropertyName(name: "MerchantID")]

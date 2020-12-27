@@ -12,8 +12,10 @@ namespace Microsoft.Extensions.DependencyInjection
 
             services.AddHttpClient();
             services.AddSingleton<IHttpRestClient, HttpRestClient>();
-            var restClient = services.BuildServiceProvider().GetRequiredService<IHttpRestClient>();
-            services.AddTransient(_=> new ZarinpalGateway(restClient, merchantId));
+            var restClient = services.BuildServiceProvider()
+                .GetRequiredService<IHttpRestClient>();
+            services.AddTransient<IZarinpalGateway>
+                (_=> new ZarinpalGateway(restClient, merchantId));
 
             return services;
         }
