@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Paymun.Core.Models;
+﻿using Paymun.Core.Models;
 using Paymun.Core.Models.Enum;
-using Paymun.Gateway.Zarinpal.Internal;
 using Paymun.Gateway.Zarinpal.Models;
 
-namespace Paymun.Gateway.Zarinpal.Internal {
+namespace Paymun.Gateway.Zarinpal.Internal
+{
     internal static class Extensions {
 
         public static ZarinpalPaymentRequest ToZarinpalRequest(

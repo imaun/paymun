@@ -9,7 +9,7 @@ namespace Paymun.Samples.Console
 {
     class Program
     {
-        const string _MERCHANT_ID = "asdawwdwadewa";
+        const string _MERCHANT_ID = "YOUR_API_KEY";
 
         static Task Main(string[] args) {
             //Console.WriteLine("Hello World!");
@@ -26,13 +26,13 @@ namespace Paymun.Samples.Console
 
             IZarinpalGateway zarinpal = provider.GetRequiredService<IZarinpalGateway>();
             var request = new PaymentRequest("http://localhost:31474/Verify") {
-                Amount = 100000,
+                Amount = 2507000,
                 Description = "Filan",
-                Email = "imun22@gmail.com",
-                Mobile = "+989120781451"
+                Email = "myemail@gmail.com",
+                Mobile = "+989121234567"
             };
             zarinpal.SetAuthority("varzeshafarinan.com");
-            zarinpal.EnableSandboxMode();
+            
             var result = zarinpal.CreatePaymentAsync(request).Result;
 
             return result;
