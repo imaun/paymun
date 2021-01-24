@@ -1,10 +1,9 @@
 ﻿using Paymun.Gateway.Zarinpal;
 using Paymun.Core;
 
-namespace Microsoft.Extensions.DependencyInjection
-{
-    public static class ZarinpalBuilderExtension
-    {
+namespace Microsoft.Extensions.DependencyInjection {
+
+    public static class ZarinpalBuilderExtension {
 
         public static IServiceCollection AddZarinpalServices(
             this IServiceCollection services,

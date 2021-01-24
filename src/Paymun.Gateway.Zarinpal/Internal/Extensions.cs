@@ -40,7 +40,7 @@ namespace Paymun.Gateway.Zarinpal.Internal
 
         public static PaymentVerifyResult ToResult(this ZarinpalPaymentVerifyResult model) =>
             new PaymentVerifyResult {
-                ReferenceId = model.ReferenceId,
+                ReferenceId = model.ReferenceId.ToString(),
                 StatusCode = model.Status,
                 Status = model.Succeded
                     ? PaymentVerifiyStatus.Succeeded

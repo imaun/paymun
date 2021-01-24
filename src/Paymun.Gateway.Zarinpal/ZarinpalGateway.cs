@@ -62,6 +62,7 @@ namespace Paymun.Gateway.Zarinpal {
 
             if (string.IsNullOrWhiteSpace(request.MerchantId))
                 request.MerchantId = this.MerchantId;
+
             var zarinpalRequest = request.ToZarinpalRequest(Authority);
             
             var result = await _httpClient

@@ -1,12 +1,12 @@
-﻿using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 using Paymun.Gateway.Zarinpal.Internal;
 
 namespace Paymun.Gateway.Zarinpal.Models {
 
     public class ZarinpalPaymentVerifyResult {
 
-        [JsonPropertyName(name: "RefID")]
-        public string ReferenceId { get; set; }
+        [JsonProperty("RefID")]
+        public long? ReferenceId { get; set; }
         public int Status { get; set; }
         public bool Succeded => Status == ZarinpalApiHelper._Success_Status_Code;
         public ZarinpalPaymentVerifyExtraDetail ExtraDetail { get; set; }

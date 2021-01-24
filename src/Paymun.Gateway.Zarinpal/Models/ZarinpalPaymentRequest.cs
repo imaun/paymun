@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Paymun.Gateway.Zarinpal.Models {
     internal class ZarinpalPaymentRequest {
 
-        [JsonPropertyName("MerchantID")]
+        [JsonProperty("MerchantID")]
         public string MerchantId { get; set; }
 
         public long TrackingNumber { get; set; }
 
-        [JsonPropertyName("CallbackURL")]
+        [JsonProperty("CallbackURL")]
         public string CallbackUrl {
             get; set;
         }
