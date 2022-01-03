@@ -1,6 +1,7 @@
 ﻿using System;
 using Paymun.Core.Models;
 using Paymun.Core.Models.Enum;
+using Paymun.Core.Extensions;
 
 namespace Paymun.Gateway.Mellat.Internal {
 
@@ -19,9 +20,8 @@ namespace Paymun.Gateway.Mellat.Internal {
         /// <param name="result"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException"></exception>
-        public static MellatPaymentResult GetMellatResult(this string result) {
-            if(result == null || result.Length == 0) 
-                throw new ArgumentNullException(nameof(result));
+        public static MellatPaymentResult GetMellatPaymentRequestResult(this string result) {
+            result.CheckIsNullOrEmpty();
             
             var myResult = result.Split(',');
             var refId = myResult.Length > 1 ? myResult[1] : null;
@@ -35,7 +35,31 @@ namespace Paymun.Gateway.Mellat.Internal {
             };
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        public static MellatVerifyPaymentResult GetMellatVerifyPaymentResult(this string result) {
+            result.CheckIsNullOrEmpty();
 
+            bool success = result == _OK_Code;
+            string msg = "";
+            if(!success) {
+                msg = MellatGatewayTranslator.Translate(result);
+            }
+
+            return new MellatVerifyPaymentResult {
+                Message = msg,
+                ResCode = result
+            };
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public static PaymentRequestResult ToPaymentResult(this MellatPaymentResult input) {
             var result = new PaymentRequestResult {
                 PaymentPageUrl = PaymentPageUrl,
@@ -47,5 +71,20 @@ namespace Paymun.Gateway.Mellat.Internal {
 
             return result;
         }
+
+
+        public static PaymentVerifyResult ToPaymentVerifyResult(this MellatVerifyPaymentResult input) {
+            input.CheckArgumentIsNull(nameof(input));
+
+            var result = new PaymentVerifyResult();
+            if (input.Success)
+                result.Status = PaymentVerifiyStatus.Succeeded;
+
+            if(input.Message.IsNotNull())
+                result.Message = input.Message;
+
+            return result;
+        }
+
     }
 }

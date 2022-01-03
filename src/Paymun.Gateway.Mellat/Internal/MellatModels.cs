@@ -14,4 +14,14 @@ namespace Paymun.Gateway.Mellat.Internal
 
         public string Message { get; set; }
     }
+
+    internal class MellatVerifyPaymentResult
+    {
+        public string ResCode { get; set; }
+
+        public bool Success => ResCode == MellatHelper._OK_Code;
+
+        public string Message { get; set; }
+    }
+
 }

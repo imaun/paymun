@@ -23,7 +23,7 @@ namespace Paymun.Gateway.Mellat {
         }
 
         #region Properties
-        public string MerchantId { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string MerchantId { get; set; }
 
         public string Username { get; set; }
 
@@ -33,6 +33,7 @@ namespace Paymun.Gateway.Mellat {
 
         #endregion
 
+        /// <inheritdoc/>
         public async Task<PaymentRequestResult> CreatePaymentAsync(PaymentRequest request) {
             request.CheckArgumentIsNull("[PaymentRequest] cannot be null.");
 
@@ -54,18 +55,30 @@ namespace Paymun.Gateway.Mellat {
                 enc: string.Empty);
 
 
-            var mellatResult = response.Body.@return.GetMellatResult();
+            var mellatResult = response.Body.@return.GetMellatPaymentRequestResult();
 
             return await Task.FromResult(
                 mellatResult.ToPaymentResult()
             );
         }
 
-
+        /// <inheritdoc/>
         public async Task<PaymentVerifyResult> VerifyPaymentAsync(PaymentVerifyRequest request) {
             request.CheckArgumentIsNull("[PaymentVerifyRequest] cannot be null.");
 
-            throw new NotImplementedException();
+            var response = await _client.bpVerifyRequestAsync(
+                terminalId: TerminalId,
+                userName: Username,
+                userPassword: Password,
+                orderId: request.OrderId,
+                saleOrderId: request.TrackingNumber,
+                saleReferenceId: request.ReferenceId);
+
+            var mellatResult = response.Body.@return.GetMellatVerifyPaymentResult();
+
+            return await Task.FromResult(
+                mellatResult.ToPaymentVerifyResult()
+            );
         }
 
 

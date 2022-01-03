@@ -24,6 +24,11 @@ namespace Paymun.Core.Extensions {
         /// <returns>true if is null</returns>
         public static bool IsNull(this object obj) => obj == null;
 
+        public static void CheckIsNullOrEmpty(this string str) {
+            if (str == null || str.Length == 0)
+                throw new ArgumentNullException(nameof(str));
+        }
+
         /// <summary>
         /// Checks if the argument is null.
         /// </summary>
