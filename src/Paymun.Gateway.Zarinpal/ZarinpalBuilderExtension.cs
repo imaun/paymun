@@ -5,6 +5,12 @@ namespace Microsoft.Extensions.DependencyInjection {
 
     public static class ZarinpalBuilderExtension {
 
+        /// <summary>
+        /// Add Zarinpal payment services.
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="merchantId"></param>
+        /// <returns></returns>
         public static IServiceCollection AddZarinpalServices(
             this IServiceCollection services,
             string merchantId) {

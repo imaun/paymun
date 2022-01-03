@@ -7,6 +7,10 @@ namespace Paymun.Gateway.Mellat {
     /// </summary>
     public class MellatGatewayOptions : GatewayOptions {
 
+        public MellatGatewayOptions() {
+            Name = "Mellat";
+        }
+
         public long TerminalId { get; set; }
 
         public string UserName { get; set; }

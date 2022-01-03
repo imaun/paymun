@@ -9,27 +9,53 @@ using Paymun.Core.Extensions;
 
 namespace Paymun.Gateway.Mellat {
     
+    public interface IMellatGateway : Paymun.Gateway.Core.IPaymentGateway
+    {
+        long TerminalId { get; }
+        string Username { get; }
+        string Password { get; }
+    }
+
     /// <summary>
     /// 
     /// </summary>
-    public class MellatGateway : Paymun.Gateway.Core.IPaymentGateway
-    {
+    public class MellatGateway : IMellatGateway {
 
         private readonly PaymentGatewayClient _client = new PaymentGatewayClient();
+        private readonly MellatGatewayOptions _gatewayOptions;
 
+        public MellatGateway(
+            long terminalId,
+            string userName,
+            string userPassword) {
 
-        public MellatGateway() {
+            _gatewayOptions = new MellatGatewayOptions
+            {
+                TerminalId = terminalId,
+                UserName = userName,
+                Password = userPassword
+            };
+        }
 
+        public MellatGateway(MellatGatewayOptions options) {
+            _gatewayOptions = options ?? throw new ArgumentNullException(nameof(options));
         }
 
         #region Properties
         public string MerchantId { get; set; }
 
-        public string Username { get; set; }
+        public string Username => _gatewayOptions.UserName;
 
-        public string Password { get; set; }
+        public string Password => _gatewayOptions.Password;
 
-        public long TerminalId => Convert.ToInt64(MerchantId);
+        public long TerminalId {
+            get {
+                if (_gatewayOptions != null && _gatewayOptions.TerminalId > 0)
+                    return _gatewayOptions.TerminalId;
+
+                return Convert.ToInt64(MerchantId);
+            }
+        } 
 
         #endregion
 
