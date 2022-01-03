@@ -49,7 +49,7 @@ namespace Paymun.Samples.Console
             zarinpal.SetAuthority("varzeshafarinan.com");
             
             var result = zarinpal.CreatePaymentAsync(request).Result;
-
+            
             return result;
         }
 

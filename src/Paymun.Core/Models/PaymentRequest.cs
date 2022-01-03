@@ -19,6 +19,8 @@ namespace Paymun.Core.Models {
 
         public long TrackingNumber { get; set; }
 
+        public long OrderId { get; set; }
+
         private string _callbackUrl;
         public string CallbackUrl {
             get => _callbackUrl;

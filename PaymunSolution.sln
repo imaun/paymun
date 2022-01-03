@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30611.23
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AF94CFBD-B0E5-49FD-A564-B62792EBBCC6}"
 EndProject
@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Paymun.Core", "src\Paymun.C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{D2559503-3D72-463F-B48A-B025304FCC02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paymun.Samples.Console", "samples\Paymun.Samples.Console\Paymun.Samples.Console.csproj", "{27588BAD-1261-4263-B6F0-73AD82BEB8DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Paymun.Samples.Console", "samples\Paymun.Samples.Console\Paymun.Samples.Console.csproj", "{27588BAD-1261-4263-B6F0-73AD82BEB8DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Paymun.Gateway.Mellat", "src\Paymun.Gateway.Mellat\Paymun.Gateway.Mellat.csproj", "{E197C6EF-E3F0-4746-88A9-5F4DFEECFC60}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,10 @@ Global
 		{27588BAD-1261-4263-B6F0-73AD82BEB8DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27588BAD-1261-4263-B6F0-73AD82BEB8DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27588BAD-1261-4263-B6F0-73AD82BEB8DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E197C6EF-E3F0-4746-88A9-5F4DFEECFC60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E197C6EF-E3F0-4746-88A9-5F4DFEECFC60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E197C6EF-E3F0-4746-88A9-5F4DFEECFC60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E197C6EF-E3F0-4746-88A9-5F4DFEECFC60}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +45,7 @@ Global
 		{439618AB-31BC-4BA0-9F8A-14749D154E52} = {AF94CFBD-B0E5-49FD-A564-B62792EBBCC6}
 		{FD35B2EA-33F9-412E-BEDD-60446389B889} = {AF94CFBD-B0E5-49FD-A564-B62792EBBCC6}
 		{27588BAD-1261-4263-B6F0-73AD82BEB8DD} = {D2559503-3D72-463F-B48A-B025304FCC02}
+		{E197C6EF-E3F0-4746-88A9-5F4DFEECFC60} = {AF94CFBD-B0E5-49FD-A564-B62792EBBCC6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E113F593-2E34-455C-8BEC-0C42F9AF18CB}
