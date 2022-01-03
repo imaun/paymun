@@ -3,10 +3,15 @@ using System.Threading.Tasks;
 using MellatBankPaymentService;
 using Paymun.Core.Models;
 using Paymun.Gateway.Core;
+using Paymun.Core.Models.Enum;
+using Paymun.Gateway.Mellat.Internal;
+using Paymun.Core.Extensions;
 
 namespace Paymun.Gateway.Mellat {
-
-
+    
+    /// <summary>
+    /// 
+    /// </summary>
     public class MellatGateway : Paymun.Gateway.Core.IPaymentGateway
     {
 
@@ -29,13 +34,7 @@ namespace Paymun.Gateway.Mellat {
         #endregion
 
         public async Task<PaymentRequestResult> CreatePaymentAsync(PaymentRequest request) {
-            //var response = await _client.bpInquiryRequestAsync(
-            //    Convert.ToInt64(MerchantId), 
-            //    Username, 
-            //    Password, 
-            //    request.TrackingNumber, 
-            //    request.OrderId, 
-            //    0);
+            request.CheckArgumentIsNull("[PaymentRequest] cannot be null.");
 
             var response = await _client.bpPayRequestAsync(
                 terminalId: TerminalId, 
@@ -54,9 +53,18 @@ namespace Paymun.Gateway.Mellat {
                 cartItem: string.Empty, 
                 enc: string.Empty);
 
+
+            var mellatResult = response.Body.@return.GetMellatResult();
+
+            return await Task.FromResult(
+                mellatResult.ToPaymentResult()
+            );
         }
 
+
         public async Task<PaymentVerifyResult> VerifyPaymentAsync(PaymentVerifyRequest request) {
+            request.CheckArgumentIsNull("[PaymentVerifyRequest] cannot be null.");
+
             throw new NotImplementedException();
         }
 
