@@ -2,10 +2,8 @@
 using System.Threading.Tasks;
 using MellatBankPaymentService;
 using Paymun.Core.Models;
-using Paymun.Gateway.Core;
-using Paymun.Core.Models.Enum;
-using Paymun.Gateway.Mellat.Internal;
 using Paymun.Core.Extensions;
+using Paymun.Gateway.Mellat.Internal;
 
 namespace Paymun.Gateway.Mellat {
     
@@ -107,12 +105,9 @@ namespace Paymun.Gateway.Mellat {
             );
         }
 
+        private string getLocalDate() => $"{DateTime.Now:yyyyMMdd}";
 
-        private string getLocalDate()
-            => DateTime.Now.ToShortDateString();
-
-        private string getLocalTime()
-            => DateTime.Now.ToShortTimeString();
+        private string getLocalTime() => $"{DateTime.Now:HHmmss}";
 
     }
 }

@@ -21,5 +21,15 @@ namespace Microsoft.Extensions.DependencyInjection {
             return services;
         }
 
+
+        public static IServiceCollection AddMellatPaymentGateway(
+            this IServiceCollection services,
+            MellatGatewayOptions options) {
+
+            services.AddTransient<IMellatGateway>(_=> new MellatGateway(options));
+
+            return services;
+        }
+
     }
 }

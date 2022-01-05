@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Paymun.Core\Paymun.Core.csproj" />
+    <ProjectReference Include="..\..\src\Paymun.Gateway.Mellat\Paymun.Gateway.Mellat.csproj" />
     <ProjectReference Include="..\..\src\Paymun.Gateway.Zarinpal\Paymun.Gateway.Zarinpal.csproj" />
   </ItemGroup>
 
