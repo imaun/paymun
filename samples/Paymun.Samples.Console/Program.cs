@@ -5,6 +5,7 @@ using Microsoft.Extensions.Hosting;
 using Paymun.Core.Models;
 using Paymun.Gateway.Zarinpal;
 using Paymun.Gateway.Mellat;
+using System.IO;
 
 namespace Paymun.Samples.Console
 {
@@ -19,6 +20,15 @@ namespace Paymun.Samples.Console
             var mellatPay = getMellatPayment(host.Services);
 
             System.Console.WriteLine($"Mellat link created.");
+
+            System.Console.WriteLine($"PageUrl : {mellatPay.PaymentPageUrl}");
+            System.Console.WriteLine($"Status : {mellatPay.Status.ToString()}");
+            System.Console.WriteLine($"Message : {mellatPay.Message}");
+
+            using var writer = new StreamWriter("message.txt", true);
+            writer.WriteLine(mellatPay.Message);
+            writer.Flush();
+            writer.Close();
 
             //var payment = getPaymentResult(host.Services);
 
@@ -101,9 +111,9 @@ namespace Paymun.Samples.Console
                 services.AddZarinpalServices(merchantId: _MERCHANT_ID)
                         .AddMellatPaymentGateway(new MellatGatewayOptions { 
                             Name = "Mellat",
-                            TerminalId = 6227237,
-                            UserName = "Ganjineh19",
-                            Password = "38296179"
+                            TerminalId = 111111,
+                            UserName = "user",
+                            Password = "pass"
                         })
             );
 

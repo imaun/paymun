@@ -71,7 +71,7 @@ namespace Paymun.Gateway.Mellat {
                 localTime: getLocalTime(), 
                 additionalData: string.Empty, 
                 callBackUrl: request.CallbackUrl, 
-                payerId: string.Empty, 
+                payerId: null, 
                 mobileNo: request.Mobile, 
                 encPan: string.Empty, 
                 panHiddenMode: string.Empty, 
