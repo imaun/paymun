@@ -3,8 +3,10 @@ using System.Threading.Tasks;
 using Paymun.Core;
 using Paymun.Gateway.Core;
 using Paymun.Core.Models;
+using Paymun.Core.Extensions;
 using Paymun.Gateway.Zarinpal.Models;
 using Paymun.Gateway.Zarinpal.Internal;
+using Microsoft.AspNetCore.Http;
 
 namespace Paymun.Gateway.Zarinpal {
 
@@ -25,6 +27,12 @@ namespace Paymun.Gateway.Zarinpal {
             _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
             MerchantId = merchantId;
         }
+
+        #region Zarinpal gateway constants
+        private const string FIELD_STATUS = "Status";
+        private const string FIELD_AUTHORITY = "Authority";
+
+        #endregion
 
         #region Properties
         public string MerchantId { get; set; }
@@ -84,5 +92,21 @@ namespace Paymun.Gateway.Zarinpal {
         public void SetAuthority(string authority) =>
             Authority = authority;
 
+        public GatewayCallbackResult GetCallbackResult(IFormCollection collection) {
+            var result = new GatewayCallbackResult {
+                StatusCode = collection.GetValue(FIELD_STATUS),
+                BankToken = collection.GetValue(FIELD_AUTHORITY),
+            };
+
+            result.Success = result.StatusCode.Equals(
+                ZarinpalApiHelper._SUCCESS_STR_CODE, 
+                StringComparison.InvariantCultureIgnoreCase);
+
+            result.Message = result.Success
+                ? $"Status : {ZarinpalApiHelper._SUCCESS_STR_CODE}"
+                : $"Error with status : {result.StatusCode}";
+
+            return result;
+        }
     }
 }

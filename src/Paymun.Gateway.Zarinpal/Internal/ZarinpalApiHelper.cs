@@ -10,6 +10,8 @@
         private const string _WWW = "www";
         private const string _WITH_EXTRA = "WithExtra";
         public const int _Success_Status_Code = 100;
+        public const int _ALREADY_OK_CODE = 101;
+        public const string _SUCCESS_STR_CODE = "OK";
         #endregion
 
         #region Methods

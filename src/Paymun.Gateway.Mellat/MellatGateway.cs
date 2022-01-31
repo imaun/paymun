@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using MellatBankPaymentService;
 using Paymun.Core.Models;
 using Paymun.Core.Extensions;
 using Paymun.Gateway.Mellat.Internal;
+using Microsoft.AspNetCore.Http;
 
 namespace Paymun.Gateway.Mellat {
     
@@ -38,6 +40,22 @@ namespace Paymun.Gateway.Mellat {
         public MellatGateway(MellatGatewayOptions options) {
             _gatewayOptions = options ?? throw new ArgumentNullException(nameof(options));
         }
+
+        #region Bank Mellat related constants
+
+        private const string ALREADY_VERIFIED_CODE = "43";
+        private const string OK_STATUS = "0";
+
+        private const string FIELD_ResCode = "ResCode";
+        private const string FIELD_RefId = "RefId";
+        private const string FIELD_saleOrderId = "saleOrderId";
+        private const string FIELD_SaleReferenceId = "SaleReferenceId";
+        private const string FIELD_RRN = "RRN";
+        private const string FIELD_CID = "CID";
+        private const string FIELD_TRACENO = "TRACENO";
+        private const string FIELD_SecurePAN = "SecurePan";
+
+        #endregion
 
         #region Properties
         public string MerchantId { get; set; }
@@ -103,6 +121,21 @@ namespace Paymun.Gateway.Mellat {
             return await Task.FromResult(
                 mellatResult.ToPaymentVerifyResult()
             );
+        }
+
+        public GatewayCallbackResult GetCallbackResult(IFormCollection collection) 
+        {
+            return new GatewayCallbackResult
+            {
+                BankReferenceId = collection.GetValue(FIELD_SaleReferenceId),
+                BankToken = collection.GetValue(FIELD_RefId),
+                CID = collection.GetValue(FIELD_CID),
+                OrderId = long.TryParse(collection.GetValue(FIELD_saleOrderId), out var orderId) ? orderId : 0,
+                RRN = collection.GetValue(FIELD_RRN),
+                SecurePAN = collection.GetValue(FIELD_SecurePAN),
+                StatusCode = collection.GetValue(FIELD_ResCode),
+                TraceNo = collection.GetValue(FIELD_TRACENO)
+            };
         }
 
         private string getLocalDate() => $"{DateTime.Now:yyyyMMdd}";

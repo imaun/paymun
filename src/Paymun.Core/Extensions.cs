@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Linq;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Primitives;
 
 namespace Paymun.Core.Extensions {
 
@@ -45,6 +48,13 @@ namespace Paymun.Core.Extensions {
             if (o == null)
                 throw new NullReferenceException(name);
         }
+
+
+        public static string GetValueOrEmpty(this StringValues val)
+            => val.Any() ? val.ToString() : null;
+
+        public static string GetValue(this IFormCollection collection, string key)
+            => collection[key].GetValueOrEmpty();
 
     }
 }
