@@ -14,7 +14,7 @@ namespace Microsoft.Extensions.DependencyInjection {
         public static IServiceCollection AddMellatPaymentGateway(
             this IServiceCollection services,
             Action<MellatGatewayOptions> options) {
-            
+
             services.Configure(options);
             services.AddTransient<IMellatGateway, MellatGateway>();
 

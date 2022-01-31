@@ -109,12 +109,18 @@ namespace Paymun.Samples.Console
             Host.CreateDefaultBuilder(args)
             .ConfigureServices((_, services) =>
                 services.AddZarinpalServices(merchantId: _MERCHANT_ID)
-                        .AddMellatPaymentGateway(new MellatGatewayOptions { 
-                            Name = "Mellat",
-                            TerminalId = 111111,
-                            UserName = "user",
-                            Password = "pass"
+                        .AddMellatPaymentGateway(_=> {
+                            _.Name = "Mellat";
+                            _.UserName = "ganjineh19";
+                            _.Password = "38296172";
+                            _.TerminalId = 6227237;
                         })
+                        //.AddMellatPaymentGateway(new MellatGatewayOptions { 
+                        //    Name = "Mellat",
+                        //    TerminalId = 111111,
+                        //    UserName = "user",
+                        //    Password = "pass"
+                        //})
             );
 
     }
