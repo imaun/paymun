@@ -10,6 +10,7 @@ namespace Paymun.Core.Models {
         public int StatusCode { get; set; }
         public string Message { get; set; }
         public string PaymentPageUrl { get; set; }
+        public string Token { get; set; }
         public bool Succeeded => Status == PaymentRequestStatus.Succeeded;
     }
 }

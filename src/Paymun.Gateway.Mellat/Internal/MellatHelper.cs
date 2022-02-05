@@ -63,7 +63,8 @@ namespace Paymun.Gateway.Mellat.Internal {
         public static PaymentRequestResult ToPaymentResult(this MellatPaymentResult input) {
             var result = new PaymentRequestResult {
                 PaymentPageUrl = PaymentPageUrl,
-                Message = input.Message
+                Message = input.Message,
+                Token = input.RefId
             };
 
             if (input.Success)
