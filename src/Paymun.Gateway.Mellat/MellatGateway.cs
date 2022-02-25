@@ -48,12 +48,12 @@ namespace Paymun.Gateway.Mellat {
 
         private const string FIELD_ResCode = "ResCode";
         private const string FIELD_RefId = "RefId";
-        private const string FIELD_saleOrderId = "saleOrderId";
+        private const string FIELD_SaleOrderId = "SaleOrderId";
         private const string FIELD_SaleReferenceId = "SaleReferenceId";
         private const string FIELD_RRN = "RRN";
         private const string FIELD_CID = "CID";
         private const string FIELD_TRACENO = "TRACENO";
-        private const string FIELD_SecurePAN = "SecurePan";
+        private const string FIELD_SecurePAN = "CardHolderPan";
 
         #endregion
 
@@ -130,7 +130,7 @@ namespace Paymun.Gateway.Mellat {
                 BankReferenceId = collection.GetValue(FIELD_SaleReferenceId),
                 BankToken = collection.GetValue(FIELD_RefId),
                 CID = collection.GetValue(FIELD_CID),
-                OrderId = long.TryParse(collection.GetValue(FIELD_saleOrderId), out var orderId) ? orderId : 0,
+                OrderId = long.TryParse(collection.GetValue(FIELD_SaleOrderId), out var orderId) ? orderId : 0,
                 RRN = collection.GetValue(FIELD_RRN),
                 SecurePAN = collection.GetValue(FIELD_SecurePAN),
                 StatusCode = collection.GetValue(FIELD_ResCode),
