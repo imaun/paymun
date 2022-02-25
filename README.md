@@ -24,11 +24,12 @@ Now you can use `ZarinpalGateway` class to Create or Verify payment requests wit
 
 - In your `Startup.cs` file, under `ConfigureServices` method add :
 
- `  services.AddMellatPaymentGateway(new MellatGatewayOptions
-    {
-        Name = "Mellat",
-        TerminalId = 'TerminalId',
-        Password = 'password',
-        TestTerminal = false,
-        UserName = 'username'
-    });`
+ ```cs  
+ services.AddMellatPaymentGateway(new MellatGatewayOptions
+{
+    Name = "Mellat",
+    TerminalId = 'TerminalId',
+    Password = 'password',
+    TestTerminal = false,
+    UserName = 'username'
+});```
