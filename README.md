@@ -16,7 +16,7 @@ This library is currently under development and only support **Zarinpal** gatewa
 
 #### How to use Zarinpal
 
-- In your `Startup.cs` file, under `ConfigureServices` method add `services.AddZarinpalServices(merchantId: "your_merchant_id");` line. (Get MerchantID from Zarinpal.com)
+- In your `Startup.cs` file, under `ConfigureServices` method add `cs services.AddZarinpalServices(merchantId: "your_merchant_id");` line. (Get MerchantID from Zarinpal.com)
 
 Now you can use `ZarinpalGateway` class to Create or Verify payment requests with Zarinpal service.
 
