@@ -28,8 +28,8 @@ Now you can use `ZarinpalGateway` class to Create or Verify payment requests wit
  services.AddMellatPaymentGateway(new MellatGatewayOptions
 {
     Name = "Mellat",
-    TerminalId = 'TerminalId',
-    Password = 'password',
+    TerminalId = "TerminalId",
+    Password = "password",
     TestTerminal = false,
-    UserName = 'username'
+    UserName = "username"
 });```
