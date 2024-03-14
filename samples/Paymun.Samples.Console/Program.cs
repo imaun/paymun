@@ -29,23 +29,7 @@ namespace Paymun.Samples.Console
             writer.WriteLine(mellatPay.Message);
             writer.Flush();
             writer.Close();
-
-            //var payment = getPaymentResult(host.Services);
-
-            //System.Console.WriteLine($"Payment link created: {payment.PaymentPageUrl}");
-            //System.Console.WriteLine("Enter verify when you pay the link.");
-
-            //var command = System.Console.ReadLine();
-
-            //if(command.ToUpper() == "VERIFY") {
-            //    System.Console.WriteLine("Enter Authority:");
-            //    var authority = System.Console.ReadLine();
-            //    var verify = getVerifyResult(host.Services, authority);
-            //    System.Console.WriteLine($"RefId: {verify.ReferenceId}");
-            //    System.Console.WriteLine($"Status: {verify.StatusCode}");
-            //    System.Console.WriteLine($"Msg: {verify.Message}");
-            //}
-
+            
             return host.RunAsync();
         }
 
@@ -76,12 +60,12 @@ namespace Paymun.Samples.Console
             var request = new PaymentRequest
             {
                 Amount = 200000,
-                CallbackUrl = "http://crypto.bitibon.com",
-                Email = "imun22@gmail.com",
-                Mobile = "989120781451",
+                CallbackUrl = "http://sample.com",
+                Email = "dd@gmail.com",
+                Mobile = "989121234567",
                 OrderId = 123233,
                 TrackingNumber = 1234232,
-                Description = "خرید تستی بیتی بن"
+                Description = "Test"
             };
 
             var result = mellat.CreatePaymentAsync(request).GetAwaiter().GetResult();
@@ -111,16 +95,10 @@ namespace Paymun.Samples.Console
                 services.AddZarinpalServices(merchantId: _MERCHANT_ID)
                         .AddMellatPaymentGateway(_=> {
                             _.Name = "Mellat";
-                            _.UserName = "ganjineh19";
-                            _.Password = "38296172";
-                            _.TerminalId = 6227237;
+                            _.UserName = "userName";
+                            _.Password = "******";
+                            _.TerminalId = 100000;
                         })
-                        //.AddMellatPaymentGateway(new MellatGatewayOptions { 
-                        //    Name = "Mellat",
-                        //    TerminalId = 111111,
-                        //    UserName = "user",
-                        //    Password = "pass"
-                        //})
             );
 
     }
